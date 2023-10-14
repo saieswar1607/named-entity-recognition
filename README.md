@@ -77,7 +77,6 @@ print("Unique tags in corpus:", data['Tag'].nunique())
 ~~~
 ## creating the lists 
 ~~~
-
 words=list(data['Word'].unique())
 words.append("ENDPAD")
 tags=list(data['Tag'].unique())
@@ -120,7 +119,6 @@ tag2idx = {t: i for i, t in enumerate(tags)}
 ~~~
 plt.hist([len(s) for s in sentences], bins=50)
 plt.show()
-     
 ~~~
 ## Assigning the values 
 ~~~
@@ -130,11 +128,9 @@ max_len = 50
 ~~~
 ## Assigning the x value
 ~~~
-
 X = sequence.pad_sequences(maxlen=max_len,
                   sequences=X1, padding="post",
                   value=num_words-1)
-
 ~~~
 ## Assigning the y value
 ~~~
@@ -142,7 +138,6 @@ y = sequence.pad_sequences(maxlen=max_len,
                   sequences=y1,
                   padding="post",
                   value=tag2idx["O"])
-     
 ~~~
 ## Creating the model
 ~~~
@@ -184,7 +179,6 @@ metrics[['loss','val_loss']].plot()
 ~~~
 ## Sample text prediction
 ~~~
-
 i = 50
 p = model.predict(np.array([X_test[i]]))
 p = np.argmax(p, axis=-1)
@@ -199,6 +193,7 @@ for w, true, pred in zip(X_test[i], y_true, p[0]):
 ### Training Loss, Validation Loss Vs Iteration Plot
 
 <img width="316" alt="img1" src="https://github.com/saieswar1607/named-entity-recognition/assets/93427011/14a69d71-a57a-4288-86dd-f28449e805b3">
+<br>
 <img width="308" alt="img2" src="https://github.com/saieswar1607/named-entity-recognition/assets/93427011/8b27c517-c7c7-4ebd-b54f-bf74db1d3696">
 
 ### Sample Text Prediction
